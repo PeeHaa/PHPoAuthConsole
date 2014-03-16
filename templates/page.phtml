@@ -10,7 +10,12 @@
     <body>
         <div id="container">
             <header>
-                <h1><a href="/">PHPoAuthConsole</a></h1>
+                <h1><a href="/<?php echo $version; ?>">PHPoAuthConsole</a></h1>
+                <select name="versions">
+                    <?php foreach ($versions as $versionSelect) { ?>
+                        <option value="<?php echo $versionSelect; ?>" <?php if ($versionSelect === $version) echo 'selected'; ?>><?php echo $versionSelect; ?></option>
+                    <?php } ?>
+                </select>
             </header>
             <div id="content">
                 <?php echo $content; ?>

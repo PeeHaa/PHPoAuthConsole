@@ -129,6 +129,12 @@ header h1 a {
     color: white;
 }
 
+header select {
+    position: absolute;
+    top: 16px;
+    right: 1em;
+}
+
 #content {
     padding: 1em 1em 5em; /* bottom padding for footer */
 }

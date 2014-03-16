@@ -59,6 +59,19 @@ $request = new Request(
 $dump = new Dump();
 
 /**
+ * Get all versions supported
+ */
+$versions = scandir(__DIR__ . '/versions/releases');
+
+foreach ($versions as $index => $version) {
+    if (strpos($version, 'v') !== 0) {
+        unset($versions[$index]);
+    }
+}
+
+arsort($versions);
+
+/**
  * Get the current targeted version
  */
 $version = null;

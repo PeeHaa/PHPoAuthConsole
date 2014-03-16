@@ -279,4 +279,12 @@ var PrettyJSON = {};
 
         jsonResult.appendChild(JSON.prettify(JSON.parse(text)));
     }
+
+    var versionSwitch = document.querySelector('header select');
+
+    if (versionSwitch) {
+        versionSwitch.addEventListener('change', function(e) {
+            location.href = '/' + versionSwitch.options[versionSwitch.selectedIndex].value;
+        });
+    }
 }());
