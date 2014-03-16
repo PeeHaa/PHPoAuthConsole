@@ -63,22 +63,22 @@ $dump = new Dump();
  */
 $version = null;
 
-preg_match('#/(v\d+\.\d+\.\d+)#', $request->getPath(), $matches);
+preg_match('#(v\d+\.\d+\.\d+)#', $request->path(0), $matches);
 
 if (isset($matches[1])) {
-    $version = $matches[1];
+    $version = $request->path(0);
 
     // bootstrap the correct oauth lib version
     require_once __DIR__ . '/versions/releases/' . $version . '/src/OAuth/bootstrap.php';
+
+    /**
+     * Initialize the oauth services
+     */
+    $services = new Collection;
+
+    $services->add('Twitter', $credentials['twitter']['key'], $credentials['twitter']['secret'])
+        ->add('Test', 'foo', 'bar');
 }
-
-/**
- * Initialize the oauth services
- */
-$services = new Collection;
-
-$services->add('Twitter', $credentials['twitter']['key'], $credentials['twitter']['secret'])
-    ->add('Test', 'foo', 'bar');
 
 /**
  * Setup routing and content templates
@@ -92,8 +92,31 @@ if ($version === null) {
     exit;
 } elseif (preg_match('#^/v\d+\.\d+\.\d+$#', $request->getPath()) === 1) {
     require __DIR__ . '/templates/overview.phtml';
+} elseif (preg_match('#^/v\d+\.\d+\.\d+/(.*)/authorize$#', $request->getPath()) === 1 && $request->get('oauth_token') !== null) {
+    $services->getAccessToken(
+        $request->path(1),
+        $request->get('oauth_token'),
+        $request->get('oauth_verifier')
+    );
+
+    header('Location: ' . $request->getBaseUrl() . '/' . $request->path(0));
+    exit;
 } elseif (preg_match('#^/v\d+\.\d+\.\d+/(.*)/authorize$#', $request->getPath(), $matches) === 1) {
     $services->authorize($request->path(1));
+} elseif (preg_match('#^/v\d+\.\d+\.\d+/[^/]+$#', $request->getPath(), $matches) === 1 && $request->getMethod() === 'GET') {
+    require __DIR__ . '/templates/console.phtml';
+} elseif (preg_match('#^/v\d+\.\d+\.\d+/[^/]+$#', $request->getPath(), $matches) === 1 && $request->getMethod() === 'POST') {
+    if (!$services->isAuthenticated($request->path(1))) {
+        header('Location: ' . $request->getBaseUrl() . '/' . $request->path(0) . '/' . $request->path(1) . '/authorize/');
+        exit;
+    }
+
+    $result = [
+        'data' => $services->request($request->path(1), $request->post('method'), $request->post('url')),
+        'type' => null,
+    ];
+
+    require __DIR__ . '/templates/console.phtml';
 } else {
     require __DIR__ . '/templates/not-found.phtml';
 }
