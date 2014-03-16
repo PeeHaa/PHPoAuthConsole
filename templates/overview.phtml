@@ -1,0 +1,17 @@
+<?php foreach ($services as $name => $service) { ?>
+    <?php if ($service === null) continue; ?>
+    <?php if ($services->isAuthenticated($name)) { ?>
+        <a href="/<?php echo $version . '/' . $name; ?>" class="service">
+    <?php } else { ?>
+        <a href="/<?php echo $version . '/' . $name; ?>/authorize" class="service">
+    <?php } ?>
+        <article class="<?php echo strtolower($name); ?>" title="<?php echo strtolower($name); ?>" class="<?php echo strtolower($name); ?>">
+            <i class="fa fa-github"></i>
+            <?php if ($services->isAuthenticated($name)) { ?>
+                <p>Authenticated</p>
+            <?php } else { ?>
+                <p>Request token</p>
+            <?php } ?>
+        </article>
+    </a>
+<?php } ?>
