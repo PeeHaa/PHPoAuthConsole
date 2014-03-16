@@ -84,26 +84,19 @@ class Collection implements \Iterator
         return $this;
     }
 
-    public function request($path, array $params = [])
+    /**
+     * Makes an API request to a service
+     *
+     * @param string $name   The name of the service
+     * @param string $method The HTTP method
+     * @param string $path   The path to the resource
+     * @param array  $params The parameters to be send for the request
+     *
+     * @return string The result (/ response) of the request
+     */
+    public function request($name, $method, $path, array $params = null)
     {
-        $parts = [];
-        foreach ($path as $item) {
-            $parts[] = $item;
-        }
-
-        $name   = $this->normalizeName(array_shift($parts));
-        $method = array_pop($parts);
-
-        $parts = array_map('strtolower', $parts);
-        $parts = array_map('ucfirst', $parts);
-
-        $abstractedServiceName = '\\PHPoAuthImpl\\Service\\' . $name . '\\' . implode('\\', $parts);
-
-        $service = $this->factory->build($abstractedServiceName);
-
-        //$service = new $abstractedServiceName($this->services[$name]);
-
-        return $service->$method();
+        return $this->services[$this->normalizeName($name)]->request($path, $method, $params);
     }
 
     /**
@@ -126,10 +119,7 @@ class Collection implements \Iterator
     public function authorize($name)
     {
         $name = $this->normalizeName($name);
-var_dump([
-    $this->services[$name] instanceof ServiceInterfaceV1,
-    $this->services[$name]->requestRequestToken(),
-]);
+
         if ($this->services[$name] instanceof ServiceInterfaceV1) {
             $token = $this->services[$name]->requestRequestToken();
 
