@@ -1,9 +1,9 @@
 PHPoAuthConsole
 ===============
 
-PHP 5.4+ [PHPoAuthLib][phpoauhtlib] project debugging service and generic oauth service console debugger.
+PHP 5.4+ [PHPoAuthLib][phpoauthlib] project debugging service and generic oauth service console debugger.
 
-http://demo.phpoauthlib.com
+https://demo.phpoauthlib.com
 
 Support
 -------
