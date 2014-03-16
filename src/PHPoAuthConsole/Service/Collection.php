@@ -135,7 +135,7 @@ class Collection implements \Iterator
     public function getAccessToken($name, $token, $verifier)
     {
         $name = $this->normalizeName($name);
-
+//var_dump($_SESSION);
         $token = $this->storage->retrieveAccessToken($name);
 
         $this->services[$name]->requestAccessToken(
@@ -147,6 +147,8 @@ class Collection implements \Iterator
 
     private function normalizeName($name)
     {
+        return $name;
+
         return ucfirst(strtolower($name));
     }
 

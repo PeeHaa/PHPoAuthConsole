@@ -5,8 +5,12 @@
     <?php } else { ?>
         <a href="/<?php echo $version . '/' . $name; ?>/authorize" class="service">
     <?php } ?>
-        <article class="<?php echo strtolower($name); ?>" title="<?php echo strtolower($name); ?>" class="<?php echo strtolower($name); ?>">
-            <i class="fa fa-github"></i>
+        <article class="<?php echo strtolower($name); ?>" title="<?php echo $name; ?>" class="<?php echo strtolower($name); ?>">
+            <?php if (strtolower($name) === 'twitter' || strtolower($name) === 'etsy') { // placeholder til font awesome fixes its font ?>
+                <i class="fa fa-circle-o"></i>
+            <?php } else { ?>
+                <i class="fa fa-<?php echo strtolower($name); ?>"></i>
+            <?php } ?>
             <?php if ($services->isAuthenticated($name)) { ?>
                 <p>Authenticated</p>
             <?php } else { ?>

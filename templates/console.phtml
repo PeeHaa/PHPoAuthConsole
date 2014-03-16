@@ -1,10 +1,12 @@
 <div class="console">
     <form action="<?php echo $request->getPath(); ?>" method="post">
         <div class="resource">
-            <input type="text" name="url" value="help/configuration.json">
+            <input type="text" name="url" value="<?php if (isset($apiCall)) echo htmlspecialchars($apiCall['uri'], ENT_QUOTES); ?>">
             <select name="method">
-                <option value="GET">GET</option>
-                <option value="POST">POST</option>
+                <option value="GET" <?php if (isset($apiCall) && $apiCall['method'] === 'GET') echo 'selected'; ?>>GET</option>
+                <option value="POST" <?php if (isset($apiCall) && $apiCall['method'] === 'POST') echo 'selected'; ?>>POST</option>
+                <option value="PUT" <?php if (isset($apiCall) && $apiCall['method'] === 'PUT') echo 'selected'; ?>>PUT</option>
+                <option value="HEAD" <?php if (isset($apiCall) && $apiCall['method'] === 'HEAD') echo 'selected'; ?>>HEAD</option>
             </select>
             <input type="submit" name="submit" value="Request!">
         </div>

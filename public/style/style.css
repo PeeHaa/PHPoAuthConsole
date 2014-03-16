@@ -162,14 +162,25 @@ a.service {
     display: inline-block;
 }
 
-article.twitter {
-    background: #00aced;
+article {
     width: 150px;
     height: 150px;
     border-radius: 25px;
     color: white;
     text-align: center;
     cursor: pointer;
+}
+
+article.twitter {
+    background: #00aced;
+}
+
+article.bitbucket {
+    background: #205081;
+}
+
+article.etsy {
+    background: #d15511;
 }
 
 article:hover i {

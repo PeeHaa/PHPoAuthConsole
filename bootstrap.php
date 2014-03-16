@@ -77,7 +77,8 @@ if (isset($matches[1])) {
     $services = new Collection;
 
     $services->add('Twitter', $credentials['twitter']['key'], $credentials['twitter']['secret'])
-        ->add('Test', 'foo', 'bar');
+        ->add('BitBucket', $credentials['bitbucket']['key'], $credentials['bitbucket']['secret'])
+        ->add('Etsy', $credentials['etsy']['key'], $credentials['etsy']['secret']);
 }
 
 /**
@@ -110,6 +111,11 @@ if ($version === null) {
         header('Location: ' . $request->getBaseUrl() . '/' . $request->path(0) . '/' . $request->path(1) . '/authorize/');
         exit;
     }
+
+    $apiCall = [
+        'uri'    => $request->post('url'),
+        'method' => $request->post('method'),
+    ];
 
     $result = [
         'data' => $services->request($request->path(1), $request->post('method'), $request->post('url')),
