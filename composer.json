@@ -1,0 +1,19 @@
+{
+    "name": "peehaa/oauthconsole",
+    "description": "PHP 5.4+ oAuth 1/2 Library console demo",
+    "keywords": ["oauth", "authentication", "authorization", "security"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pieter Hordijk",
+            "email": "info@pieterhordijk.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "peehaa/oauth": "0.0.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    }
+}
