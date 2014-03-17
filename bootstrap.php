@@ -59,6 +59,26 @@ $request = new Request(
 $dump = new Dump();
 
 /**
+ * Gets the type of the response
+ */
+function getType($rawResponse)
+{
+    if (json_decode($rawResponse) !== null) {
+        return 'json';
+    }
+
+    $internalErrors = libxml_use_internal_errors(true);
+    $xml = simplexml_load_string($rawResponse);
+    libxml_use_internal_errors($internalErrors);
+
+    if ($xml !== false) {
+        return 'xml';
+    }
+
+    return null;
+}
+
+/**
  * Get all versions supported
  */
 $versions = scandir(__DIR__ . '/versions/releases');
@@ -96,7 +116,8 @@ if (isset($matches[1])) {
 
     $services->add('Twitter', $credentials['twitter']['key'], $credentials['twitter']['secret'])
         ->add('BitBucket', $credentials['bitbucket']['key'], $credentials['bitbucket']['secret'])
-        ->add('Etsy', $credentials['etsy']['key'], $credentials['etsy']['secret']);
+        ->add('Etsy', $credentials['etsy']['key'], $credentials['etsy']['secret'])
+        ->add('FitBit', $credentials['fitbit']['key'], $credentials['fitbit']['secret']);
 }
 
 /**
@@ -135,10 +156,14 @@ if ($version === null) {
         'method' => $request->post('method'),
     ];
 
+    $rawResponse = $services->request($request->path(1), $request->post('method'), $request->post('url'));
+
     $result = [
-        'data' => $services->request($request->path(1), $request->post('method'), $request->post('url')),
-        'type' => null,
+        'data' => $rawResponse,
+        'type' => getType($rawResponse),
     ];
+
+
 
     require __DIR__ . '/templates/console.phtml';
 } else {

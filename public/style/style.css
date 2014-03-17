@@ -194,6 +194,10 @@ article.etsy {
     background: #d15511;
 }
 
+article.fitbit {
+    background: #363636;
+}
+
 article:hover i {
     color: black;
 }

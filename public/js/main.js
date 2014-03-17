@@ -268,7 +268,7 @@ var PrettyJSON = {};
 }());
 
 (function() {
-    var jsonResult = document.querySelector('div.result .raw');
+    var jsonResult = document.querySelector('div.result .raw[data-type="json"]');
 
     if (jsonResult) {
         var text = jsonResult.innerText || jsonResult.textContent;
