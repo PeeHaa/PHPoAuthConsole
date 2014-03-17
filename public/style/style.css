@@ -198,6 +198,14 @@ article.fitbit {
     background: #363636;
 }
 
+article.flickr {
+    background: #ff0084;
+}
+
+article.tumblr {
+    background: #32506d;
+}
+
 article:hover i {
     color: black;
 }

@@ -117,7 +117,9 @@ if (isset($matches[1])) {
     $services->add('Twitter', $credentials['twitter']['key'], $credentials['twitter']['secret'])
         ->add('BitBucket', $credentials['bitbucket']['key'], $credentials['bitbucket']['secret'])
         ->add('Etsy', $credentials['etsy']['key'], $credentials['etsy']['secret'])
-        ->add('FitBit', $credentials['fitbit']['key'], $credentials['fitbit']['secret']);
+        ->add('FitBit', $credentials['fitbit']['key'], $credentials['fitbit']['secret'])
+        ->add('Flickr', $credentials['flickr']['key'], $credentials['flickr']['secret'])
+        ->add('Tumblr', $credentials['tumblr']['key'], $credentials['tumblr']['secret']);
 }
 
 /**

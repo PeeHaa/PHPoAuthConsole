@@ -123,9 +123,15 @@ class Collection implements \Iterator
         if ($this->services[$name] instanceof ServiceInterfaceV1) {
             $token = $this->services[$name]->requestRequestToken();
 
-            $url = $this->services[$name]->getAuthorizationUri(array(
+            $authorizationUriData = [
                 'oauth_token' => $token->getRequestToken(),
-            ));
+            ];
+
+            if ($name === 'Flickr') {
+                $authorizationUriData['perms'] = 'delete';
+            }
+
+            $url = $this->services[$name]->getAuthorizationUri($authorizationUriData);
         }
 
         header('Location: ' . $url);
@@ -135,7 +141,7 @@ class Collection implements \Iterator
     public function getAccessToken($name, $token, $verifier)
     {
         $name = $this->normalizeName($name);
-//var_dump($_SESSION);
+
         $token = $this->storage->retrieveAccessToken($name);
 
         $this->services[$name]->requestAccessToken(
