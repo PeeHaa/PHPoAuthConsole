@@ -101,11 +101,15 @@ $versionPattern = '(?:v\d+\.\d+\.\d+)|(?:master)';
  */
 $version = null;
 
-preg_match('#(' . $versionPattern . ')#', $request->path(0), $matches);
+preg_match('#^(' . $versionPattern . ')$#', $request->path(0), $matches);
 
 if (isset($matches[1])) {
     $version = $request->path(0);
+} elseif (isset($_COOKIE['version']) && preg_match('#^(' . $versionPattern . ')$#', $_COOKIE['version']) === 1) {
+    $version = $_COOKIE['version'];
+}
 
+if ($version !== null) {
     // bootstrap the correct oauth lib version
     require_once __DIR__ . '/versions/releases/' . $version . '/src/OAuth/bootstrap.php';
 
@@ -122,15 +126,24 @@ if (isset($matches[1])) {
         ->add('Tumblr', $credentials['tumblr']['key'], $credentials['tumblr']['secret']);
 }
 
+setcookie('version', $version, time()+60*60*24*30, '/', $request->server('SERVER_NAME'), $request->isSecure(), true);
+
 /**
  * Setup routing and content templates
  */
 ob_start();
 
-if ($version === null) {
-    $versions = scandir(__DIR__ . '/versions/releases');
+if (preg_match('#^(' . $versionPattern . ')$#', $request->path(0)) !== 1) {
 
-    header('Location: ' . $request->getBaseUrl() . '/' . array_pop($versions));
+    if ($version === null) {
+        $versions = scandir(__DIR__ . '/versions/releases');
+
+        $version = array_pop($versions);
+
+        setcookie('version', $version, time()+60*60*24*30, '/', $request->server('SERVER_NAME'), $request->isSecure(), true);
+    }
+
+    header('Location: ' . $request->getBaseUrl() . '/' . $version);
     exit;
 } elseif (preg_match('#^/' . $versionPattern . '$#', $request->getPath()) === 1) {
     require __DIR__ . '/templates/overview.phtml';
