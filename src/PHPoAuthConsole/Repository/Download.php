@@ -58,6 +58,14 @@ class Download
     }
 
     /**
+     * Downloads latest master of the repository
+     */
+    public function updateMaster()
+    {
+        $this->getRelease('master', 'https://github.com/Lusitanian/PHPoAuthLib/archive/master.zip');
+    }
+
+    /**
      * Gets all releases from the GitHub repo and extracts them in the correct directory
      */
     private function getReleases()
@@ -129,7 +137,7 @@ class Download
         $dirContents = scandir($tempDirectory);
 
         foreach ($dirContents as $directory) {
-            if (strpos($directory, 'Lusitanian-PHPoAuthLib-') === 0) {
+            if (strpos($directory, 'Lusitanian-PHPoAuthLib-') === 0 || $directory === 'PHPoAuthLib-master') {
                 rename($tempDirectory . '/' . $directory, $releaseLocation);
 
                 break;
