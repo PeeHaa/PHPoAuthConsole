@@ -16,3 +16,11 @@ ini_set('date.timezone', 'Europe/Amsterdam');
  * Setup the services credentials
  */
 require_once __DIR__ . '/credentials-example.php';
+
+/**
+ * Setup Analytics
+ */
+$analytics = [
+    'code'   => null,
+    'domain' => null,
+];
