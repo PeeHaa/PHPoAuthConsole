@@ -64,7 +64,7 @@ $dump = new Dump();
 $versions = scandir(__DIR__ . '/versions/releases');
 
 foreach ($versions as $index => $version) {
-    if (strpos($version, 'v') !== 0) {
+    if (strpos($version, 'v') !== 0 && $version !== 'master') {
         unset($versions[$index]);
     }
 }
@@ -72,11 +72,16 @@ foreach ($versions as $index => $version) {
 arsort($versions);
 
 /**
+ * Version in URI path matcher pattern
+ */
+$versionPattern = '(?:v\d+\.\d+\.\d+)|(?:master)';
+
+/**
  * Get the current targeted version
  */
 $version = null;
 
-preg_match('#(v\d+\.\d+\.\d+)#', $request->path(0), $matches);
+preg_match('#(' . $versionPattern . ')#', $request->path(0), $matches);
 
 if (isset($matches[1])) {
     $version = $request->path(0);
@@ -104,9 +109,9 @@ if ($version === null) {
 
     header('Location: ' . $request->getBaseUrl() . '/' . array_pop($versions));
     exit;
-} elseif (preg_match('#^/v\d+\.\d+\.\d+$#', $request->getPath()) === 1) {
+} elseif (preg_match('#^/' . $versionPattern . '$#', $request->getPath()) === 1) {
     require __DIR__ . '/templates/overview.phtml';
-} elseif (preg_match('#^/v\d+\.\d+\.\d+/(.*)/authorize$#', $request->getPath()) === 1 && $request->get('oauth_token') !== null) {
+} elseif (preg_match('#^/' . $versionPattern . '/(.*)/authorize$#', $request->getPath()) === 1 && $request->get('oauth_token') !== null) {
     $services->getAccessToken(
         $request->path(1),
         $request->get('oauth_token'),
@@ -115,11 +120,11 @@ if ($version === null) {
 
     header('Location: ' . $request->getBaseUrl() . '/' . $request->path(0));
     exit;
-} elseif (preg_match('#^/v\d+\.\d+\.\d+/(.*)/authorize$#', $request->getPath(), $matches) === 1) {
+} elseif (preg_match('#^/' . $versionPattern . '/(.*)/authorize$#', $request->getPath(), $matches) === 1) {
     $services->authorize($request->path(1));
-} elseif (preg_match('#^/v\d+\.\d+\.\d+/[^/]+$#', $request->getPath(), $matches) === 1 && $request->getMethod() === 'GET') {
+} elseif (preg_match('#^/' . $versionPattern . '/[^/]+$#', $request->getPath(), $matches) === 1 && $request->getMethod() === 'GET') {
     require __DIR__ . '/templates/console.phtml';
-} elseif (preg_match('#^/v\d+\.\d+\.\d+/[^/]+$#', $request->getPath(), $matches) === 1 && $request->getMethod() === 'POST') {
+} elseif (preg_match('#^/' . $versionPattern . '/[^/]+$#', $request->getPath(), $matches) === 1 && $request->getMethod() === 'POST') {
     if (!$services->isAuthenticated($request->path(1))) {
         header('Location: ' . $request->getBaseUrl() . '/' . $request->path(0) . '/' . $request->path(1) . '/authorize/');
         exit;
