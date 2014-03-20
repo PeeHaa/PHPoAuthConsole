@@ -206,6 +206,10 @@ article.tumblr {
     background: #32506d;
 }
 
+article.xing {
+    background: #006567;
+}
+
 article:hover i {
     color: black;
 }

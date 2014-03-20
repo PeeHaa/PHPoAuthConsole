@@ -123,7 +123,8 @@ if ($version !== null) {
         ->add('Etsy', $credentials['etsy']['key'], $credentials['etsy']['secret'])
         ->add('FitBit', $credentials['fitbit']['key'], $credentials['fitbit']['secret'])
         ->add('Flickr', $credentials['flickr']['key'], $credentials['flickr']['secret'])
-        ->add('Tumblr', $credentials['tumblr']['key'], $credentials['tumblr']['secret']);
+        ->add('Tumblr', $credentials['tumblr']['key'], $credentials['tumblr']['secret'])
+        ->add('Xing', $credentials['xing']['key'], $credentials['xing']['secret']);
 }
 
 setcookie('version', $version, time()+60*60*24*30, '/', $request->server('SERVER_NAME'), $request->isSecure(), true);
