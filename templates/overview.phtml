@@ -1,3 +1,15 @@
+<?php
+$icons = [
+    'twitter'   => '&#xf099;',
+    'bitbucket' => '&#xf171;',
+    'etsy'      => '&#xf10c;', // default
+    'fitbit'    => '&#xf10c;', // default
+    'flickr'    => '&#xf16e;',
+    'tumblr'    => '&#xf173;',
+    'xing'      => '&#xf168;',
+    'facebook'  => '&#xf09a;',
+];
+?>
 <?php foreach ($services as $name => $service) { ?>
     <?php if ($service === null) continue; ?>
     <?php if ($services->isAuthenticated($name)) { ?>
@@ -6,11 +18,7 @@
         <a href="/<?php echo $version . '/' . $name; ?>/authorize" class="service">
     <?php } ?>
         <article class="<?php echo strtolower($name); ?>" title="<?php echo $name; ?>" class="<?php echo strtolower($name); ?>">
-            <?php if (in_array(strtolower($name), ['twitter', 'etsy', 'fitbit'], true)) { // placeholder til font awesome fixes its font ?>
-                <i class="fa fa-circle-o"></i>
-            <?php } else { ?>
-                <i class="fa fa-<?php echo strtolower($name); ?>"></i>
-            <?php } ?>
+            <i class="fa"><?php echo $icons[strtolower($name)]; ?></i>
             <?php if ($services->isAuthenticated($name)) { ?>
                 <p>Authenticated</p>
             <?php } else { ?>
