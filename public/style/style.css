@@ -292,6 +292,7 @@ div.console {
     position: relative;
     padding: 15px 15px 0;
     box-sizing: border-box;
+    text-align: left;
 }
 
 div.console h3 {
