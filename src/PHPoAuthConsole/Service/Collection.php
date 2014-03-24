@@ -24,11 +24,16 @@ use OAuth\OAuth2\Service\ServiceInterface as ServiceInterfaceV2;
  * oAuth service collection
  *
  * @category   PHPoAuthConsole
- * @package    Psr0
+ * @package    Service
  * @author     Pieter Hordijk <info@pieterhordijk.com>
  */
 class Collection implements \Iterator
 {
+    /**
+     * @var \PHPoAuthConsole\Service\ScopeFetcher
+     */
+    private $scopeFetcher;
+
     /**
      * @var \OAuth\Common\Http\Uri\Uri Oauth URI
      */
@@ -54,6 +59,8 @@ class Collection implements \Iterator
      */
     public function __construct()
     {
+        $this->scopeFetcher = new ScopeFetcher();
+
         $uriFactory = new UriFactory();
 
         $this->uri = $uriFactory->createFromSuperGlobalArray($_SERVER);
@@ -67,19 +74,29 @@ class Collection implements \Iterator
     /**
      * Adds a service to the collection
      *
-     * @param string $name   The name of the service
-     * @param string $key    The API key
-     * @param string $secret The API secret
+     * @param string $name              The name of the service
+     * @param string $key               The API key
+     * @param string $secret            The API secret
+     * @param string $serviceWithScopes Name of the service class if it has scopes (oauth2 services)
      *
      * @return \PHPoAuthConsole\Service\Collection The collection
      */
-    public function add($name, $key, $secret)
+    public function add($name, $key, $secret, $serviceWithScopes = null)
     {
-        $this->services[$this->normalizeName($name)] = $this->serviceFactory->createService(
-            $name,
-            new Credentials($key, $secret, $this->uri->getAbsoluteUri()),
-            $this->storage
-        );
+        if ($serviceWithScopes === null) {
+            $this->services[$this->normalizeName($name)] = $this->serviceFactory->createService(
+                $name,
+                new Credentials($key, $secret, $this->uri->getAbsoluteUri()),
+                $this->storage
+            );
+        } else {
+            $this->services[$this->normalizeName($name)] = $this->serviceFactory->createService(
+                $name,
+                new Credentials($key, $secret, $this->uri->getAbsoluteUri()),
+                $this->storage,
+                $this->scopeFetcher->fetch($serviceWithScopes)
+            );
+        }
 
         return $this;
     }
@@ -132,6 +149,8 @@ class Collection implements \Iterator
             }
 
             $url = $this->services[$name]->getAuthorizationUri($authorizationUriData);
+        } elseif ($this->services[$name] instanceof ServiceInterfaceV2) {
+            $url = $this->services[$name]->getAuthorizationUri();
         }
 
         header('Location: ' . $url);
@@ -149,6 +168,13 @@ class Collection implements \Iterator
             $verifier,
             $token->getRequestTokenSecret()
         );
+    }
+
+    public function getAccessToken2($name, $token)
+    {
+        $name = $this->normalizeName($name);
+
+        $token = $this->services[$name]->requestAccessToken($_GET['code']);
     }
 
     private function normalizeName($name)
