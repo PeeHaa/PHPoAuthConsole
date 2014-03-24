@@ -126,6 +126,7 @@ if ($version !== null) {
         ->add('Tumblr', $credentials['tumblr']['key'], $credentials['tumblr']['secret'])
         ->add('Xing', $credentials['xing']['key'], $credentials['xing']['secret'])
         ->add('Amazon', $credentials['amazon']['key'], $credentials['amazon']['secret'], '\\OAuth\\OAuth2\\Service\\Amazon')
+        ->add('Bitly', $credentials['bitly']['key'], $credentials['bitly']['secret'], '\\OAuth\\OAuth2\\Service\\Bitly')
         ->add('Facebook', $credentials['facebook']['key'], $credentials['facebook']['secret'], '\\OAuth\\OAuth2\\Service\\Facebook')
         ;
 }
