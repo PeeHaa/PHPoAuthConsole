@@ -210,6 +210,10 @@ article.xing {
     background: #006567;
 }
 
+article.facebook {
+    background: #3b5998;
+}
+
 article:hover i {
     color: black;
 }

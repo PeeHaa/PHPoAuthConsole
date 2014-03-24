@@ -116,7 +116,7 @@ if ($version !== null) {
     /**
      * Initialize the oauth services
      */
-    $services = new Collection;
+    $services = new Collection();
 
     $services->add('Twitter', $credentials['twitter']['key'], $credentials['twitter']['secret'])
         ->add('BitBucket', $credentials['bitbucket']['key'], $credentials['bitbucket']['secret'])
@@ -124,7 +124,8 @@ if ($version !== null) {
         ->add('FitBit', $credentials['fitbit']['key'], $credentials['fitbit']['secret'])
         ->add('Flickr', $credentials['flickr']['key'], $credentials['flickr']['secret'])
         ->add('Tumblr', $credentials['tumblr']['key'], $credentials['tumblr']['secret'])
-        ->add('Xing', $credentials['xing']['key'], $credentials['xing']['secret']);
+        ->add('Xing', $credentials['xing']['key'], $credentials['xing']['secret'])
+        ->add('Facebook', $credentials['facebook']['key'], $credentials['facebook']['secret'], '\\OAuth\\OAuth2\\Service\\Facebook');
 }
 
 setcookie('version', $version, time()+60*60*24*30, '/', $request->server('SERVER_NAME'), $request->isSecure(), true);
@@ -148,11 +149,21 @@ if (preg_match('#^(' . $versionPattern . ')$#', $request->path(0)) !== 1) {
     exit;
 } elseif (preg_match('#^/' . $versionPattern . '$#', $request->getPath()) === 1) {
     require __DIR__ . '/templates/overview.phtml';
+// oauth1 return
 } elseif (preg_match('#^/' . $versionPattern . '/(.*)/authorize$#', $request->getPath()) === 1 && $request->get('oauth_token') !== null) {
     $services->getAccessToken(
         $request->path(1),
         $request->get('oauth_token'),
         $request->get('oauth_verifier')
+    );
+
+    header('Location: ' . $request->getBaseUrl() . '/' . $request->path(0));
+    exit;
+// oauth2 return
+} elseif (preg_match('#^/' . $versionPattern . '/(.*)/authorize$#', $request->getPath()) === 1 && $request->get('code') !== null) {
+    $services->getAccessToken2(
+        $request->path(1),
+        $request->get('code')
     );
 
     header('Location: ' . $request->getBaseUrl() . '/' . $request->path(0));
@@ -178,8 +189,6 @@ if (preg_match('#^(' . $versionPattern . ')$#', $request->path(0)) !== 1) {
         'data' => $rawResponse,
         'type' => getType($rawResponse),
     ];
-
-
 
     require __DIR__ . '/templates/console.phtml';
 } else {
