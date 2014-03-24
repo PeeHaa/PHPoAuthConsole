@@ -137,6 +137,7 @@ header select {
 
 #content {
     padding: 1em 1em 5em; /* bottom padding for footer */
+    text-align: center;
 }
 
 footer {
@@ -175,7 +176,7 @@ article {
     color: white;
     text-align: center;
     cursor: pointer;
-    margin-left: 1em;
+    margin: 0 0.5em 1em;
 }
 
 a:first-child article {
