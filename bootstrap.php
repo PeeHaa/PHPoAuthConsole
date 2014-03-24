@@ -125,7 +125,9 @@ if ($version !== null) {
         ->add('Flickr', $credentials['flickr']['key'], $credentials['flickr']['secret'])
         ->add('Tumblr', $credentials['tumblr']['key'], $credentials['tumblr']['secret'])
         ->add('Xing', $credentials['xing']['key'], $credentials['xing']['secret'])
-        ->add('Facebook', $credentials['facebook']['key'], $credentials['facebook']['secret'], '\\OAuth\\OAuth2\\Service\\Facebook');
+        ->add('Amazon', $credentials['amazon']['key'], $credentials['amazon']['secret'], '\\OAuth\\OAuth2\\Service\\Amazon')
+        ->add('Facebook', $credentials['facebook']['key'], $credentials['facebook']['secret'], '\\OAuth\\OAuth2\\Service\\Facebook')
+        ;
 }
 
 setcookie('version', $version, time()+60*60*24*30, '/', $request->server('SERVER_NAME'), $request->isSecure(), true);
