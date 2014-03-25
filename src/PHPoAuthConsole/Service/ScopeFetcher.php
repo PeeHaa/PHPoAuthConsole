@@ -31,6 +31,10 @@ class ScopeFetcher
      */
     public function fetch($serviceName)
     {
+        if (!class_exists($serviceName)) {
+            return [];
+        }
+
         $reflection = new \ReflectionClass($serviceName);
 
         return $this->getScopes($reflection->getConstants());
