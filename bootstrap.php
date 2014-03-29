@@ -129,6 +129,7 @@ if ($version !== null) {
         ->add('Bitly', $credentials['bitly']['key'], $credentials['bitly']['secret'], '\\OAuth\\OAuth2\\Service\\Bitly')
         ->add('Box', $credentials['box']['key'], $credentials['box']['secret'], '\\OAuth\\OAuth2\\Service\\Box')
         ->add('Dailymotion', $credentials['dailymotion']['key'], $credentials['dailymotion']['secret'], '\\OAuth\\OAuth2\\Service\\Dailymotion')
+        ->add('Dropbox', $credentials['dropbox']['key'], $credentials['dropbox']['secret'], '\\OAuth\\OAuth2\\Service\\Dropbox')
         ->add('Facebook', $credentials['facebook']['key'], $credentials['facebook']['secret'], '\\OAuth\\OAuth2\\Service\\Facebook')
         ;
 }
