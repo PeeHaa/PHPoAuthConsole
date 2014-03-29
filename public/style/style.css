@@ -251,6 +251,10 @@ article.linkedin {
     background: #007bb6;
 }
 
+article.mailchimp {
+    background: #2c9ab7;
+}
+
 article:hover i {
     color: black;
 }
