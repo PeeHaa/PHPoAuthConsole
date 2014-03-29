@@ -61,6 +61,16 @@ class ScopeFetcher
                 continue;
             }
 
+            // @todo: think of a way to handle too many google scopes (splitting up into separate services?)
+            if (in_array($key, [
+                'SCOPE_ADSENSE', 'SCOPE_ADWORDS', 'SCOPE_GAN', 'SCOPE_PICASAWEB', 'SCOPE_CLOUDSTORAGE', 'SCOPE_ANALYTICS_READ_ONLY',
+                'SCOPE_USER_PROVISIONING', 'SCOPE_GROUPS_PROVISIONING', 'SCOPE_ORKUT', 'SCOPE_YOUTUBE_ANALYTICS_MONETARY',
+                'SCOPE_ANDROID_PUBLISHER', 'SCOPE_GPLUS_LOGIN', 'SCOPE_DRIVE_APPS_READ_ONLY', 'SCOPE_DRIVE_METADATA_READ_ONLY',
+                'SCOPE_DRIVE_READ_ONLY', 'SCOPE_CHROMEWEBSTORE', 'SCOPE_CONTENTFORSHOPPING', 'SCOPE_NICKNAME_PROVISIONING'
+            ], true)) {
+                continue;
+            }
+
             $scopes[] = $value;
         }
 
