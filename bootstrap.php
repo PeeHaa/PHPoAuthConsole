@@ -132,6 +132,7 @@ if ($version !== null) {
         ->add('Dropbox', $credentials['dropbox']['key'], $credentials['dropbox']['secret'], '\\OAuth\\OAuth2\\Service\\Dropbox')
         ->add('Facebook', $credentials['facebook']['key'], $credentials['facebook']['secret'], '\\OAuth\\OAuth2\\Service\\Facebook')
         ->add('Foursquare', $credentials['foursquare']['key'], $credentials['foursquare']['secret'], '\\OAuth\\OAuth2\\Service\\Foursquare')
+        ->add('GitHub', $credentials['github']['key'], $credentials['github']['secret'], '\\OAuth\\OAuth2\\Service\\GitHub')
         ;
 }
 

@@ -239,6 +239,10 @@ article.foursquare {
     background: #0072b1;
 }
 
+article.github {
+    background: #e0e0e0;
+}
+
 article:hover i {
     color: black;
 }
