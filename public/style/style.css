@@ -247,6 +247,10 @@ article.google {
     background: #dd4b39;
 }
 
+article.heroku {
+    background: #464368;
+}
+
 article:hover i {
     color: black;
 }

@@ -35,6 +35,11 @@ class ScopeFetcher
             return [];
         }
 
+        // global is superset of all other scopes so only this is needed
+        if ($serviceName === '\\OAuth\\OAuth2\\Service\\Heroku') {
+            return ['global'];
+        }
+
         $reflection = new \ReflectionClass($serviceName);
 
         return $this->getScopes($reflection->getConstants());

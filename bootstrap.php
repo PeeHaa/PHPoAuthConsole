@@ -134,6 +134,7 @@ if ($version !== null) {
         ->add('Foursquare', $credentials['foursquare']['key'], $credentials['foursquare']['secret'], '\\OAuth\\OAuth2\\Service\\Foursquare')
         ->add('GitHub', $credentials['github']['key'], $credentials['github']['secret'], '\\OAuth\\OAuth2\\Service\\GitHub')
         ->add('Google', $credentials['google']['key'], $credentials['google']['secret'], '\\OAuth\\OAuth2\\Service\\Google')
+        ->add('Heroku', $credentials['heroku']['key'], $credentials['heroku']['secret'], '\\OAuth\\OAuth2\\Service\\Heroku')
         ;
 }
 
