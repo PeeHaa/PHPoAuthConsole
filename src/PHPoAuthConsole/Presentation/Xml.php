@@ -36,6 +36,6 @@ class Xml
         $dom->formatOutput = true;
         $dom->loadXML($xml);
 
-        return $foo->saveXML();
+        return $dom->saveXML();
     }
 }
