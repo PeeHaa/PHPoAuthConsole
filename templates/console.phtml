@@ -16,7 +16,7 @@
         <?php if ($result['type'] !== 'xml') { ?>
             <div class="result"><div class="raw" data-type="<?php echo $result['type']; ?>"><?php echo $result['data']; ?></div></div>
         <?php } else { ?>
-            <div class="result"><div class="raw" data-type="<?php echo $result['type']; ?>"><pre><code><?php echo htmlspecialchars($result['data'], ENT_QUOTES); ?></code></pre></div></div>
+            <div class="result"><div class="raw" data-type="<?php echo $result['type']; ?>"><pre><code><?php echo htmlspecialchars($xml->parse($result['data']), ENT_QUOTES); ?></code></pre></div></div>
         <?php } ?>
     <?php } ?>
 </div>

@@ -17,6 +17,7 @@ use PHPoAuthConsole\Network\Http\Request;
 use PHPoAuthConsole\Storage\ImmutableArray;
 use PHPoAuthConsole\Service\Collection;
 use PHPoAuthConsole\Presentation\Dump;
+use PHPoAuthConsole\Presentation\Xml;
 
 /**
  * Setup the environment
@@ -54,9 +55,10 @@ $request = new Request(
 );
 
 /**
- * Setup pretty dump object
+ * Setup pretty output prettifiers
  */
-$dump = new Dump();
+$dump = new Dump(); // var_dump() prettifier
+$xml  = new Xml(); // xml prettifier
 
 /**
  * Gets the type of the response
