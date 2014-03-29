@@ -235,6 +235,10 @@ article.facebook {
     background: #3b5998;
 }
 
+article.foursquare {
+    background: #0072b1;
+}
+
 article:hover i {
     color: black;
 }

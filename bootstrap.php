@@ -131,6 +131,7 @@ if ($version !== null) {
         ->add('Dailymotion', $credentials['dailymotion']['key'], $credentials['dailymotion']['secret'], '\\OAuth\\OAuth2\\Service\\Dailymotion')
         ->add('Dropbox', $credentials['dropbox']['key'], $credentials['dropbox']['secret'], '\\OAuth\\OAuth2\\Service\\Dropbox')
         ->add('Facebook', $credentials['facebook']['key'], $credentials['facebook']['secret'], '\\OAuth\\OAuth2\\Service\\Facebook')
+        ->add('Foursquare', $credentials['foursquare']['key'], $credentials['foursquare']['secret'], '\\OAuth\\OAuth2\\Service\\Foursquare')
         ;
 }
 
