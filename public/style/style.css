@@ -247,6 +247,10 @@ article.heroku {
     background: #464368;
 }
 
+article.linkedin {
+    background: #007bb6;
+}
+
 article:hover i {
     color: black;
 }

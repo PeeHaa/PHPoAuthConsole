@@ -135,6 +135,7 @@ if ($version !== null) {
         ->add('GitHub', $credentials['github']['key'], $credentials['github']['secret'], '\\OAuth\\OAuth2\\Service\\GitHub')
         ->add('Google', $credentials['google']['key'], $credentials['google']['secret'], '\\OAuth\\OAuth2\\Service\\Google')
         ->add('Heroku', $credentials['heroku']['key'], $credentials['heroku']['secret'], '\\OAuth\\OAuth2\\Service\\Heroku')
+        ->add('Linkedin', $credentials['linkedin']['key'], $credentials['linkedin']['secret'], '\\OAuth\\OAuth2\\Service\\Linkedin')
         ;
 }
 
