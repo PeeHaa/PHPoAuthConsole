@@ -67,7 +67,8 @@ class ScopeFetcher
                 'SCOPE_USER_PROVISIONING', 'SCOPE_GROUPS_PROVISIONING', 'SCOPE_ORKUT', 'SCOPE_YOUTUBE_ANALYTICS_MONETARY',
                 'SCOPE_ANDROID_PUBLISHER', 'SCOPE_GPLUS_LOGIN', 'SCOPE_DRIVE_APPS_READ_ONLY', 'SCOPE_DRIVE_METADATA_READ_ONLY',
                 'SCOPE_DRIVE_READ_ONLY', 'SCOPE_CHROMEWEBSTORE', 'SCOPE_CONTENTFORSHOPPING', 'SCOPE_NICKNAME_PROVISIONING',
-                'SCOPE_YOUTUBE_PARTNER_EDIT' // deprecated?? removed??? never existed??? @todo check this scope
+                'SCOPE_YOUTUBE_PARTNER_EDIT', // deprecated?? removed??? never existed??? @todo check this scope
+                'SCOPE_DRIVE_APPS', 'SCOPE_GOOGLEDRIVE', 'SCOPE_GOOGLEDRIVE_FILES', 'SCOPE_DRIVE_SCRIPTS', // disabling more scopes... either google doesn't like drive or something else is borked on google's end...
             ], true)) {
                 continue;
             }
