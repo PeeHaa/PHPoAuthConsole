@@ -28,6 +28,11 @@ class Download
     const REPO_PATH = '/repos/Lusitanian/PHPoAuthLib';
 
     /**
+     * @var string The master zipball
+     */
+    const MASTER_ZIPBALL = 'https://github.com/Lusitanian/PHPoAuthLib/archive/master.zip';
+
+    /**
      * @var \PHPoAuthConsole\Repository\Client The GitHub HTTP client
      */
     private $client;
@@ -62,7 +67,26 @@ class Download
      */
     public function updateMaster()
     {
-        $this->getRelease('master', 'https://github.com/Lusitanian/PHPoAuthLib/archive/master.zip');
+        $this->getRelease('master', self::MASTER_ZIPBALL);
+    }
+
+    /**
+     * Downloads custom versions of the lib
+     *
+     * Custom versions are simply dev/master which can be used to add custom code to to test and debug issues
+     * CUstom versions always follow the convention of c#issue
+     *
+     * @param array $versions List of custom versions
+     */
+    public function updateCustom(array $versions = [])
+    {
+        if (empty($versions)) {
+            return;
+        }
+
+        foreach ($versions as $version) {
+            $this->getRelease($version, self::MASTER_ZIPBALL);
+        }
     }
 
     /**
@@ -89,8 +113,6 @@ class Download
      */
     private function getRelease($name, $zipballUri)
     {
-        //mkdir($this->location . '/releases/' . $name);
-
         $tempDirectory = sys_get_temp_dir() . '/' . uniqid();
 
         mkdir($tempDirectory);
@@ -137,6 +159,13 @@ class Download
         $dirContents = scandir($tempDirectory);
 
         foreach ($dirContents as $directory) {
+            if ($directory === 'PHPoAuthLib-master') {
+                // skip custom releases to prevent overwriting custom code
+                if (preg_match('#/releases/c-[\d]+$#', $releaseLocation) === 1) {
+                    continue;
+                }
+            }
+
             if (strpos($directory, 'Lusitanian-PHPoAuthLib-') === 0 || $directory === 'PHPoAuthLib-master') {
                 rename($tempDirectory . '/' . $directory, $releaseLocation);
 
