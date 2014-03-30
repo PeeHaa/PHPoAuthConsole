@@ -170,11 +170,11 @@ class Collection implements \Iterator
         );
     }
 
-    public function getAccessToken2($name, $token)
+    public function getAccessToken2($name, $token, $state = null)
     {
         $name = $this->normalizeName($name);
 
-        $token = $this->services[$name]->requestAccessToken($_GET['code']);
+        $token = $this->services[$name]->requestAccessToken($_GET['code'], $state);
     }
 
     private function normalizeName($name)
