@@ -161,7 +161,7 @@ class Download
         foreach ($dirContents as $directory) {
             if ($directory === 'PHPoAuthLib-master') {
                 // skip custom releases to prevent overwriting custom code
-                if (preg_match('#/releases/c-[\d]+$#', $releaseLocation) === 1) {
+                if (preg_match('#/releases/c-[\d]+$#', $releaseLocation) === 1 && is_dir($releaseLocation)) {
                     continue;
                 }
 
