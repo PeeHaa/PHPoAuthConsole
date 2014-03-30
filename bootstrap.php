@@ -182,7 +182,8 @@ if (preg_match('#^(' . $versionPattern . ')$#', $request->path(0)) !== 1) {
 } elseif (preg_match('#^/' . $versionPattern . '/(.*)/authorize$#', $request->getPath()) === 1 && $request->get('code') !== null) {
     $services->getAccessToken2(
         $request->path(1),
-        $request->get('code')
+        $request->get('code'),
+        $request->get('state')
     );
 
     header('Location: ' . $request->getBaseUrl() . '/' . $request->path(0));
