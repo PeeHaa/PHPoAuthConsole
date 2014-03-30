@@ -139,6 +139,7 @@ if ($version !== null) {
         ->add('Heroku', $credentials['heroku']['key'], $credentials['heroku']['secret'], '\\OAuth\\OAuth2\\Service\\Heroku')
         ->add('Linkedin', $credentials['linkedin']['key'], $credentials['linkedin']['secret'], '\\OAuth\\OAuth2\\Service\\Linkedin')
         ->add('Mailchimp', $credentials['mailchimp']['key'], $credentials['mailchimp']['secret'], '\\OAuth\\OAuth2\\Service\\Mailchimp')
+        ->add('Microsoft', $credentials['microsoft']['key'], $credentials['microsoft']['secret'], '\\OAuth\\OAuth2\\Service\\Microsoft')
         ;
 }
 

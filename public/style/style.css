@@ -267,6 +267,10 @@ article.mailchimp {
     background: #2c9ab7;
 }
 
+article.microsoft {
+    background: #004185;
+}
+
 article:hover i {
     color: black;
 }
