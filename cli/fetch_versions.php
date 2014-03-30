@@ -21,3 +21,6 @@ require_once __DIR__ . '/../bootstrap.php';
 $download = new Download(new Client(), __DIR__ . '/../versions');
 $download->updateVersions();
 $download->updateMaster();
+$download->updateCustom([
+    'c-216',
+]);
