@@ -57,7 +57,7 @@ $request = new Request(
 /**
  * Setup pretty output prettifiers
  */
-$dump = new Dump(); // var_dump() prettifier
+$dump = new Dump(); // raw variables prettifier
 $xml  = new Xml(); // xml prettifier
 
 /**
@@ -86,7 +86,7 @@ function getType($rawResponse)
 $versions = scandir(__DIR__ . '/versions/releases');
 
 foreach ($versions as $index => $version) {
-    if (strpos($version, 'v') !== 0 && $version !== 'master') {
+    if (strpos($version, 'v') !== 0 && strpos($version, 'c-') !== 0 && $version !== 'master') {
         unset($versions[$index]);
     }
 }
@@ -96,7 +96,7 @@ arsort($versions);
 /**
  * Version in URI path matcher pattern
  */
-$versionPattern = '(?:v\d+\.\d+\.\d+)|(?:master)';
+$versionPattern = '(?:v\d+\.\d+\.\d+)|(?:c-\d+)|(?:master)';
 
 /**
  * Get the current targeted version
