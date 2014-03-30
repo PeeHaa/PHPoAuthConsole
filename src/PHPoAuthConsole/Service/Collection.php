@@ -229,4 +229,12 @@ class Collection implements \Iterator
     {
         return key($this->services) !== null;
     }
+
+    /**
+     * Clears all stored tokens
+     */
+    public function clearAllTokens()
+    {
+        $this->storage->clearAllTokens();
+    }
 }

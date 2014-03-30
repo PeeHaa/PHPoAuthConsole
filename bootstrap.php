@@ -163,6 +163,11 @@ if (preg_match('#^(' . $versionPattern . ')$#', $request->path(0)) !== 1) {
     exit;
 } elseif (preg_match('#^/' . $versionPattern . '$#', $request->getPath()) === 1) {
     require __DIR__ . '/templates/overview.phtml';
+} elseif (preg_match('#^/' . $versionPattern . '$#', $request->getPath()) === 1 && $request->path(1) === 'clearAllTokens') {
+    $services->clearAllTokens();
+
+    header('Location: ' . $request->getBaseUrl() . '/' . $request->path(0));
+    exit;
 // oauth1 return
 } elseif (preg_match('#^/' . $versionPattern . '/(.*)/authorize$#', $request->getPath()) === 1 && $request->get('oauth_token') !== null) {
     $services->getAccessToken(

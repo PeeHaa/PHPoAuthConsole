@@ -129,6 +129,18 @@ header h1 a {
     color: white;
 }
 
+header a.clear-tokens {
+    position: absolute;
+    top: 20px;
+    right: 100px;
+    color: white;
+    text-decoration: none;
+}
+
+header a.clear-tokens:hover {
+    color: black;
+}
+
 header select {
     position: absolute;
     top: 16px;

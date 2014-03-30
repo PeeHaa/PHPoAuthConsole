@@ -12,6 +12,9 @@
         <div id="container">
             <header>
                 <h1><a href="/<?php echo $version; ?>">PHPoAuthConsole</a></h1>
+                <?php if (method_exists('\\OAuth\\Common\\Storage\\TokenStorageInterface', 'clearAllTokens')) { ?>
+                    <a href="/<?php echo $version; ?>/clearAllTokens" class="clear-tokens">Clear all tokens</a>
+                <?php } ?>
                 <select name="versions">
                     <?php foreach ($versions as $versionSelect) { ?>
                         <option value="<?php echo $versionSelect; ?>" <?php if ($versionSelect === $version) echo 'selected'; ?>><?php echo $versionSelect; ?></option>
