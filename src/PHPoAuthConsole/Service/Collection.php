@@ -155,6 +155,13 @@ class Collection implements \Iterator
         exit;
     }
 
+    /**
+     * Gets the Oauth1 access token
+     *
+     * @param string $name     The name of the service
+     * @param string $token    The token
+     * @param string $verifier The verifier token
+     */
     public function getAccessToken($name, $token, $verifier)
     {
         $token = $this->storage->retrieveAccessToken($name);
@@ -166,6 +173,13 @@ class Collection implements \Iterator
         );
     }
 
+    /**
+     * Gets the Oauth2 access token
+     *
+     * @param string $name  The name of the service
+     * @param string $token The token
+     * @param string $state The CSRF token
+     */
     public function getAccessToken2($name, $token, $state = null)
     {
         $token = $this->services[$name]->requestAccessToken($_GET['code'], $state);
