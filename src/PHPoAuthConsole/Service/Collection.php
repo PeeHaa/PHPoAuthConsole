@@ -84,13 +84,13 @@ class Collection implements \Iterator
     public function add($name, $key, $secret, $serviceWithScopes = null)
     {
         if ($serviceWithScopes === null) {
-            $this->services[$this->normalizeName($name)] = $this->serviceFactory->createService(
+            $this->services[$name] = $this->serviceFactory->createService(
                 $name,
                 new Credentials($key, $secret, $this->uri->getAbsoluteUri()),
                 $this->storage
             );
         } else {
-            $this->services[$this->normalizeName($name)] = $this->serviceFactory->createService(
+            $this->services[$name] = $this->serviceFactory->createService(
                 $name,
                 new Credentials($key, $secret, $this->uri->getAbsoluteUri()),
                 $this->storage,
@@ -113,7 +113,7 @@ class Collection implements \Iterator
      */
     public function request($name, $method, $path, array $params = null)
     {
-        return $this->services[$this->normalizeName($name)]->request($path, $method, $params);
+        return $this->services[$name]->request($path, $method, $params);
     }
 
     /**
@@ -125,7 +125,7 @@ class Collection implements \Iterator
      */
     public function isAuthenticated($name)
     {
-        return $this->storage->hasAccessToken($this->normalizeName($name));
+        return $this->storage->hasAccessToken($name);
     }
 
     /**
@@ -135,8 +135,6 @@ class Collection implements \Iterator
      */
     public function authorize($name)
     {
-        $name = $this->normalizeName($name);
-
         if ($this->services[$name] instanceof ServiceInterfaceV1) {
             $token = $this->services[$name]->requestRequestToken();
 
@@ -159,8 +157,6 @@ class Collection implements \Iterator
 
     public function getAccessToken($name, $token, $verifier)
     {
-        $name = $this->normalizeName($name);
-
         $token = $this->storage->retrieveAccessToken($name);
 
         $this->services[$name]->requestAccessToken(
@@ -172,16 +168,7 @@ class Collection implements \Iterator
 
     public function getAccessToken2($name, $token, $state = null)
     {
-        $name = $this->normalizeName($name);
-
         $token = $this->services[$name]->requestAccessToken($_GET['code'], $state);
-    }
-
-    private function normalizeName($name)
-    {
-        return $name;
-
-        return ucfirst(strtolower($name));
     }
 
     /**
