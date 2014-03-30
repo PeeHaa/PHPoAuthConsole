@@ -96,7 +96,7 @@ arsort($versions);
 /**
  * Version in URI path matcher pattern
  */
-$versionPattern = '(?:v\d+\.\d+\.\d+)|(?:c-\d+)|(?:master)';
+$versionPattern = '(?:(?:v\d+\.\d+\.\d+)|(?:c-\d+)|(?:master))';
 
 /**
  * Get the current targeted version
