@@ -163,7 +163,7 @@ if (preg_match('#^(' . $versionPattern . ')$#', $request->path(0)) !== 1) {
     exit;
 } elseif (preg_match('#^/' . $versionPattern . '$#', $request->getPath()) === 1) {
     require __DIR__ . '/templates/overview.phtml';
-} elseif (preg_match('#^/' . $versionPattern . '$#', $request->getPath()) === 1 && $request->path(1) === 'clearAllTokens') {
+} elseif (preg_match('#^/' . $versionPattern . '/clearAllTokens$#', $request->getPath()) === 1) {
     $services->clearAllTokens();
 
     header('Location: ' . $request->getBaseUrl() . '/' . $request->path(0));
