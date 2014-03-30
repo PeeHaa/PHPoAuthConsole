@@ -165,7 +165,9 @@ class Download
                     continue;
                 }
 
-                $this->deleteDirectory($releaseLocation);
+                if (preg_match('#/releases/c-[\d]+$#', $releaseLocation) !== 1) {
+                    $this->deleteDirectory($releaseLocation);
+                }
             }
 
             if (strpos($directory, 'Lusitanian-PHPoAuthLib-') === 0 || $directory === 'PHPoAuthLib-master') {
