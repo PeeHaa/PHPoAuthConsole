@@ -164,6 +164,8 @@ class Download
                 if (preg_match('#/releases/c-[\d]+$#', $releaseLocation) === 1) {
                     continue;
                 }
+
+                $this->deleteDirectory($releaseLocation);
             }
 
             if (strpos($directory, 'Lusitanian-PHPoAuthLib-') === 0 || $directory === 'PHPoAuthLib-master') {
@@ -172,5 +174,28 @@ class Download
                 break;
             }
         }
+    }
+
+    /**
+     * Recursively deletes a directory
+     *
+     * @param string $directory The directory to remove
+     */
+    private function deleteDirectory($directory)
+    {
+        $files = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($directory, \RecursiveDirectoryIterator::SKIP_DOTS),
+            \RecursiveIteratorIterator::CHILD_FIRST
+        );
+
+        foreach ($files as $fileinfo) {
+            if ($fileinfo->isDir()){
+                rmdir($fileinfo->getRealPath());
+            } else {
+                unlink($fileinfo->getRealPath());
+            }
+        }
+
+        rmdir($directory);
     }
 }
