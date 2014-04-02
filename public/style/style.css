@@ -275,6 +275,10 @@ article.pocket {
     background: #ee4056
 }
 
+article.reddit {
+    background: #cee3f8;
+}
+
 article:hover i {
     color: black;
 }

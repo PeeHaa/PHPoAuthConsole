@@ -141,6 +141,7 @@ if ($version !== null) {
         ->add('Mailchimp', $credentials['mailchimp']['key'], $credentials['mailchimp']['secret'], '\\OAuth\\OAuth2\\Service\\Mailchimp')
         ->add('Microsoft', $credentials['microsoft']['key'], $credentials['microsoft']['secret'], '\\OAuth\\OAuth2\\Service\\Microsoft')
         ->add('Pocket', $credentials['pocket']['key'], $credentials['pocket']['secret'], '\\OAuth\\OAuth2\\Service\\Pocket')
+        ->add('Reddit', $credentials['reddit']['key'], $credentials['reddit']['secret'], '\\OAuth\\OAuth2\\Service\\Reddit')
         ;
 }
 
