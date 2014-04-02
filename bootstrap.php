@@ -140,10 +140,12 @@ if ($version !== null) {
         ->add('Linkedin', $credentials['linkedin']['key'], $credentials['linkedin']['secret'], '\\OAuth\\OAuth2\\Service\\Linkedin')
         ->add('Mailchimp', $credentials['mailchimp']['key'], $credentials['mailchimp']['secret'], '\\OAuth\\OAuth2\\Service\\Mailchimp')
         ->add('Microsoft', $credentials['microsoft']['key'], $credentials['microsoft']['secret'], '\\OAuth\\OAuth2\\Service\\Microsoft')
+        ->add('Paypal', $credentials['paypal']['key'], $credentials['paypal']['secret'], '\\OAuth\\OAuth2\\Service\\Paypal')
         ->add('Pocket', $credentials['pocket']['key'], $credentials['pocket']['secret'], '\\OAuth\\OAuth2\\Service\\Pocket')
         ->add('Reddit', $credentials['reddit']['key'], $credentials['reddit']['secret'], '\\OAuth\\OAuth2\\Service\\Reddit')
         ->add('RunKeeper', $credentials['runkeeper']['key'], $credentials['runkeeper']['secret'], '\\OAuth\\OAuth2\\Service\\RunKeeper')
         ->add('SoundCloud', $credentials['soundcloud']['key'], $credentials['soundcloud']['secret'], '\\OAuth\\OAuth2\\Service\\SoundCloud')
+        ->add('Yammer', $credentials['yammer']['key'], $credentials['yammer']['secret'], '\\OAuth\\OAuth2\\Service\\Yammer')
         ;
 }
 
