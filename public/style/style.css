@@ -279,6 +279,10 @@ article.reddit {
     background: #cee3f8;
 }
 
+article.runkeeper {
+    background: #1c4c9d;
+}
+
 article:hover i {
     color: black;
 }
