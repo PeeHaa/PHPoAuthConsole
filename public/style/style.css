@@ -300,7 +300,7 @@ article:hover i {
 }
 
 article.authenticated:hover i {
-    color: 1fd622;
+    color: #1fd622;
 }
 
 article i {
@@ -310,7 +310,7 @@ article i {
 }
 
 article.authenticated i {
-    color: 1fd622;
+    color: #1fd622;
 }
 
 table {
