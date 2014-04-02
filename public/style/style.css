@@ -299,10 +299,18 @@ article:hover i {
     color: black;
 }
 
+article.authenticated:hover i {
+    color: 1fd622;
+}
+
 article i {
     margin: 0 auto;
     font-size: 100px;
     margin-top: 15px;
+}
+
+article.authenticated i {
+    color: 1fd622;
 }
 
 table {
