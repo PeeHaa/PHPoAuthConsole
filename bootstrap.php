@@ -140,6 +140,7 @@ if ($version !== null) {
         ->add('Linkedin', $credentials['linkedin']['key'], $credentials['linkedin']['secret'], '\\OAuth\\OAuth2\\Service\\Linkedin')
         ->add('Mailchimp', $credentials['mailchimp']['key'], $credentials['mailchimp']['secret'], '\\OAuth\\OAuth2\\Service\\Mailchimp')
         ->add('Microsoft', $credentials['microsoft']['key'], $credentials['microsoft']['secret'], '\\OAuth\\OAuth2\\Service\\Microsoft')
+        ->add('Pocket', $credentials['pocket']['key'], $credentials['pocket']['secret'], '\\OAuth\\OAuth2\\Service\\Pocket')
         ;
 }
 
