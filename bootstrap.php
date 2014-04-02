@@ -143,6 +143,7 @@ if ($version !== null) {
         ->add('Pocket', $credentials['pocket']['key'], $credentials['pocket']['secret'], '\\OAuth\\OAuth2\\Service\\Pocket')
         ->add('Reddit', $credentials['reddit']['key'], $credentials['reddit']['secret'], '\\OAuth\\OAuth2\\Service\\Reddit')
         ->add('RunKeeper', $credentials['runkeeper']['key'], $credentials['runkeeper']['secret'], '\\OAuth\\OAuth2\\Service\\RunKeeper')
+        ->add('SoundCloud', $credentials['soundcloud']['key'], $credentials['soundcloud']['secret'], '\\OAuth\\OAuth2\\Service\\SoundCloud')
         ;
 }
 

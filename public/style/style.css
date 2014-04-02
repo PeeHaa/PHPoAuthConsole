@@ -283,6 +283,10 @@ article.runkeeper {
     background: #1c4c9d;
 }
 
+article.soundcloud {
+    background: #ff3300;
+}
+
 article:hover i {
     color: black;
 }
