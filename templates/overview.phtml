@@ -38,9 +38,9 @@ $icons = [
         <article class="<?php echo strtolower($name); ?>" title="<?php echo $name; ?>" class="<?php echo strtolower($name); ?>">
             <i class="fa"><?php echo $icons[strtolower($name)]; ?></i>
             <?php if ($services->isAuthenticated($name)) { ?>
-                <p>Authenticated</p>
+                <p><?php echo $name; ?></p>
             <?php } else { ?>
-                <p>Request token</p>
+                <p><?php echo $name; ?></p>
             <?php } ?>
         </article>
     </a>
