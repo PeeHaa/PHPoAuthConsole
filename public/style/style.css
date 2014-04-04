@@ -299,6 +299,10 @@ article.scoopit {
     background: #6cab36;
 }
 
+article.yahoo {
+    background: #4101af;
+}
+
 article:hover i {
     color: black;
 }

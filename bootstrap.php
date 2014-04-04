@@ -128,6 +128,7 @@ if ($version !== null) {
         ->add('ScoopIt', $credentials['scoopit']['key'], $credentials['scoopit']['secret'])
         ->add('Tumblr', $credentials['tumblr']['key'], $credentials['tumblr']['secret'])
         ->add('Xing', $credentials['xing']['key'], $credentials['xing']['secret'])
+        ->add('Yahoo', $credentials['yahoo']['key'], $credentials['yahoo']['secret'])
         ->add('Amazon', $credentials['amazon']['key'], $credentials['amazon']['secret'], '\\OAuth\\OAuth2\\Service\\Amazon')
         ->add('Bitly', $credentials['bitly']['key'], $credentials['bitly']['secret'], '\\OAuth\\OAuth2\\Service\\Bitly')
         ->add('Box', $credentials['box']['key'], $credentials['box']['secret'], '\\OAuth\\OAuth2\\Service\\Box')
