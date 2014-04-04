@@ -125,6 +125,7 @@ if ($version !== null) {
         ->add('Etsy', $credentials['etsy']['key'], $credentials['etsy']['secret'])
         ->add('FitBit', $credentials['fitbit']['key'], $credentials['fitbit']['secret'])
         ->add('Flickr', $credentials['flickr']['key'], $credentials['flickr']['secret'])
+        ->add('ScoopIt', $credentials['scoopit']['key'], $credentials['scoopit']['secret'])
         ->add('Tumblr', $credentials['tumblr']['key'], $credentials['tumblr']['secret'])
         ->add('Xing', $credentials['xing']['key'], $credentials['xing']['secret'])
         ->add('Amazon', $credentials['amazon']['key'], $credentials['amazon']['secret'], '\\OAuth\\OAuth2\\Service\\Amazon')

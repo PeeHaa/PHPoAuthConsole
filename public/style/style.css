@@ -295,6 +295,10 @@ article.yammer {
     background: #396B9A;
 }
 
+article.scoopit {
+    background: #6cab36;
+}
+
 article:hover i {
     color: black;
 }
