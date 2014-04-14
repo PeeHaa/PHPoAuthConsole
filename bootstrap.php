@@ -147,6 +147,7 @@ if ($version !== null) {
         ->add('Reddit', $credentials['reddit']['key'], $credentials['reddit']['secret'], '\\OAuth\\OAuth2\\Service\\Reddit')
         ->add('RunKeeper', $credentials['runkeeper']['key'], $credentials['runkeeper']['secret'], '\\OAuth\\OAuth2\\Service\\RunKeeper')
         ->add('SoundCloud', $credentials['soundcloud']['key'], $credentials['soundcloud']['secret'], '\\OAuth\\OAuth2\\Service\\SoundCloud')
+        ->add('Vkontakte', $credentials['vkontakte']['key'], $credentials['vkontakte']['secret'], '\\OAuth\\OAuth2\\Service\\Vkontakte')
         ->add('Yammer', $credentials['yammer']['key'], $credentials['yammer']['secret'], '\\OAuth\\OAuth2\\Service\\Yammer')
         ;
 }
